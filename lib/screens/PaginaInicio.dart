@@ -16,9 +16,9 @@ class PaginaInicio extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/logo_flixtream.png',
-                  height: 100, 
-                  width: 200,
+                  'assets/data/logo_flixtream.png',
+                  height: 350, 
+                  width: 350,
                   fit: BoxFit.contain,
                 ),
                 
