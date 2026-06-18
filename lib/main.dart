@@ -17,8 +17,8 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context)=> PaginaInicio(),
-        '/PaginaFormulario': (context)=> PaginaFormulario(),
-        '/PaginaInicio': (context)=> PaginaLogin(),
+        '/paginaFormulario': (context)=> PaginaFormulario(),
+        '/paginaLogin': (context)=> PaginaLogin(),
         '/HomeScreen':(context) => HomeScreen()
         //'/': (context)=> ,
       },
