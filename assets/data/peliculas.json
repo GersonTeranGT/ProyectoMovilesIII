@@ -1,0 +1,483 @@
+[
+    {
+        "id": "1",
+        "name": "Inception",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/tXQvtRWfkUUnWJAn2tN3jERIUG.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
+        "overview": "Un ladrón que roba secretos corporativos a través del uso de tecnología de sueños, recibe la tarea de plantar una idea en la mente de un CEO. Una misión imposible que requiere un equipo de élite y un viaje a través de múltiples niveles de sueños.",
+        "trailer_url": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+        "release_date": "2010-07-16",
+        "rating": 8.8,
+        "genres": [
+            "Acción",
+            "Ciencia Ficción",
+            "Thriller"
+        ],
+        "historia": {
+            "origen": "Inspirada en experiencias de sueños lúcidos",
+            "director": "Christopher Nolan",
+            "personajes": [
+                "Dom Cobb",
+                "Arthur",
+                "Ariadne",
+                "Eames"
+            ]
+        }
+    },
+    {
+        "id": "2",
+        "name": "The Dark Knight",
+        "poster_url": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/cfT29Im5VDvjE0RpyKOSdCKZal7.jpg",
+        "overview": "Cuando la amenaza conocida como el Joker causa caos y destrucción en Gotham, Batman debe enfrentar una de las mayores pruebas psicológicas para luchar contra la injusticia. Una batalla épica por el alma de la ciudad.",
+        "trailer_url": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+        "release_date": "2008-07-18",
+        "rating": 9.0,
+        "genres": [
+            "Acción",
+            "Crimen",
+            "Drama"
+        ],
+        "historia": {
+            "origen": "Basado en el personaje de DC Comics",
+            "director": "Christopher Nolan",
+            "personajes": [
+                "Bruce Wayne",
+                "Joker",
+                "Harvey Dent",
+                "Alfred"
+            ]
+        }
+    },
+    {
+        "id": "3",
+        "name": "Interstellar",
+        "poster_url": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+        "overview": "Un equipo de exploradores viaja a través de un agujero de gusano en el espacio en un intento de asegurar la supervivencia de la humanidad. Una odisea que desafía las leyes del tiempo y el espacio.",
+        "trailer_url": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+        "release_date": "2014-11-07",
+        "rating": 8.6,
+        "genres": [
+            "Ciencia Ficción",
+            "Drama",
+            "Aventura"
+        ],
+        "historia": {
+            "origen": "Basado en teorías científicas de Kip Thorne",
+            "director": "Christopher Nolan",
+            "personajes": [
+                "Cooper",
+                "Murph",
+                "Brand",
+                "Mann"
+            ]
+        }
+    },
+    {
+        "id": "4",
+        "name": "The Godfather",
+        "poster_url": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/ejdD20cdHNFAYAN2DlqPToXKyzx.jpg",
+        "overview": "El patriarca de la familia Corleone, Don Vito, busca proteger a su familia de los peligros del mundo del crimen organizado. Una historia de poder, lealtad y traición en la mafia italiana.",
+        "trailer_url": "https://www.youtube.com/watch?v=sY1S34973zA",
+        "release_date": "1972-03-24",
+        "rating": 9.2,
+        "genres": [
+            "Drama",
+            "Crimen"
+        ],
+        "historia": {
+            "origen": "Basado en la novela de Mario Puzo",
+            "director": "Francis Ford Coppola",
+            "personajes": [
+                "Vito Corleone",
+                "Michael Corleone",
+                "Sonny Corleone"
+            ]
+        }
+    },
+    {
+        "id": "5",
+        "name": "The Shawshank Redemption",
+        "poster_url": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
+        "overview": "Dos hombres encarcelados se unen a lo largo de varios años, encontrando consuelo y redención final a través de actos de humanidad común. Una historia de esperanza y perseverancia en medio de la adversidad.",
+        "trailer_url": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+        "release_date": "1994-09-23",
+        "rating": 9.3,
+        "genres": [
+            "Drama",
+            "Crimen"
+        ],
+        "historia": {
+            "origen": "Basado en la novela de Stephen King",
+            "director": "Frank Darabont",
+            "personajes": [
+                "Andy Dufresne",
+                "Ellis Redding",
+                "Warden Norton"
+            ]
+        }
+    },
+    {
+        "id": "6",
+        "name": "Pulp Fiction",
+        "poster_url": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+        "overview": "Las vidas de dos matones, un boxeador, la esposa de un gángster y dos bandidos se entrelazan en cuatro historias de violencia y redención. Una obra maestra del cine independiente.",
+        "trailer_url": "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
+        "release_date": "1994-10-14",
+        "rating": 8.9,
+        "genres": [
+            "Crimen",
+            "Drama",
+            "Thriller"
+        ],
+        "historia": {
+            "origen": "Escrita por Quentin Tarantino",
+            "director": "Quentin Tarantino",
+            "personajes": [
+                "Vincent Vega",
+                "Jules Winnfield",
+                "Mia Wallace"
+            ]
+        }
+    },
+    {
+        "id": "7",
+        "name": "The Lion King",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/b0MxU37dNmMwKtoPVYPKOZSIrIn.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/q00H8EqULYSK74lgevMkhmGGLHn.jpg",
+        "overview": "Un joven león príncipe huye de su reino después de la muerte de su padre, pero regresa para reclamar su lugar en el ciclo de la vida. Una historia de responsabilidad, amistad y destino.",
+        "trailer_url": "https://www.youtube.com/watch?v=4sj1MT05lAA",
+        "release_date": "1994-06-15",
+        "rating": 8.5,
+        "genres": [
+            "Animación",
+            "Aventura",
+            "Drama",
+            "Familia"
+        ],
+        "historia": {
+            "origen": "Inspirado en Hamlet de Shakespeare",
+            "director": "Roger Allers, Rob Minkoff",
+            "personajes": [
+                "Simba",
+                "Mufasa",
+                "Scar",
+                "Rafiki"
+            ]
+        }
+    },
+    {
+        "id": "8",
+        "name": "Avengers: Endgame",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/br6krBFpaYmCSglLBWRuhui7tPc.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+        "overview": "Después de los devastadores eventos de Infinity War, los Vengadores restantes deben reunirse para deshacer las acciones de Thanos y restaurar el orden en el universo. El final de una era.",
+        "trailer_url": "https://www.youtube.com/watch?v=TcMBFSGVi1c",
+        "release_date": "2019-04-26",
+        "rating": 8.4,
+        "genres": [
+            "Acción",
+            "Aventura",
+            "Ciencia Ficción"
+        ],
+        "historia": {
+            "origen": "Basado en los cómics de Marvel",
+            "director": "Anthony Russo, Joe Russo",
+            "personajes": [
+                "Iron Man",
+                "Captain America",
+                "Thor",
+                "Black Widow"
+            ]
+        }
+    },
+    {
+        "id": "9",
+        "name": "Spirited Away",
+        "poster_url": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/dyJvKsNs2KP8qQnAXbRwDjblViy.jpg",
+        "overview": "Una niña de 10 años se encuentra atrapada en un mundo espiritual después de que sus padres son transformados en cerdos. Debe encontrar una manera de liberarlos y regresar a casa.",
+        "trailer_url": "https://www.youtube.com/watch?v=ByXuk9QqQkk",
+        "release_date": "2001-07-20",
+        "rating": 8.6,
+        "genres": [
+            "Animación",
+            "Aventura",
+            "Familia",
+            "Fantasía"
+        ],
+        "historia": {
+            "origen": "Inspirado en las experiencias de Hayao Miyazaki",
+            "director": "Hayao Miyazaki",
+            "personajes": [
+                "Chihiro",
+                "Haku",
+                "Yubaba",
+                "Sin Cara"
+            ]
+        }
+    },
+    {
+        "id": "10",
+        "name": "Parasite",
+        "poster_url": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+        "backdrop_url": "https://media.themoviedb.org/t/p/w1066_and_h600_face/8eihUxjQsJ7WvGySkVMC0EwbPAD.jpg",
+        "overview": "Una familia pobre se infiltra en la vida de una familia adinerada, pero las cosas se salen de control cuando descubren un oscuro secreto. Una sátira social sobre la desigualdad de clases.",
+        "trailer_url": "https://www.youtube.com/watch?v=5xH0HfJHsaY",
+        "release_date": "2019-05-30",
+        "rating": 8.5,
+        "genres": [
+            "Drama",
+            "Thriller",
+            "Comedia"
+        ],
+        "historia": {
+            "origen": "Historia original de Bong Joon-ho",
+            "director": "Bong Joon-ho",
+            "personajes": [
+                "Ki-taek",
+                "Gi-woo",
+                "Yeon-kyo",
+                "Moon-gwang"
+            ]
+        }
+    },
+    {
+        "id": "11",
+        "name": "Gladiator",
+        "poster_url": "https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
+        "overview": "Un general romano traicionado y convertido en esclavo debe luchar como gladiador para sobrevivir y vengar la muerte de su familia. Una épica historia de honor y venganza.",
+        "trailer_url": "https://www.youtube.com/watch?v=owK1qxDselE",
+        "release_date": "2000-05-05",
+        "rating": 8.5,
+        "genres": [
+            "Acción",
+            "Drama",
+            "Historia"
+        ],
+        "historia": {
+            "origen": "Inspirado en la historia del Imperio Romano",
+            "director": "Ridley Scott",
+            "personajes": [
+                "Maximus",
+                "Commodus",
+                "Lucilla",
+                "Proximo"
+            ]
+        }
+    },
+    {
+        "id": "12",
+        "name": "The Matrix",
+        "poster_url": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+        "overview": "Un programador descubre que el mundo que conoce es una simulación creada por máquinas inteligentes. Debe unirse a un grupo de rebeldes para luchar contra el sistema.",
+        "trailer_url": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
+        "release_date": "1999-03-31",
+        "rating": 8.7,
+        "genres": [
+            "Acción",
+            "Ciencia Ficción"
+        ],
+        "historia": {
+            "origen": "Concepto original de The Wachowskis",
+            "director": "Lana Wachowski, Lilly Wachowski",
+            "personajes": [
+                "Neo",
+                "Morpheus",
+                "Trinity",
+                "Agent Smith"
+            ]
+        }
+    },
+    {
+        "id": "13",
+        "name": "Toy Story",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/y59d8PjuFSgJJN4VRS7jDoRgSM9.jpg",
+        "overview": "Un vaquero de juguete y un astronauta espacial se enfrentan por el afecto de su dueño, pero deben unirse cuando se encuentran en peligro. El comienzo de una amistad legendaria.",
+        "trailer_url": "https://www.youtube.com/watch?v=v-PjgYDrg70",
+        "release_date": "1995-11-22",
+        "rating": 8.3,
+        "genres": [
+            "Animación",
+            "Aventura",
+            "Comedia",
+            "Familia"
+        ],
+        "historia": {
+            "origen": "Primera película animada por computadora de Pixar",
+            "director": "John Lasseter",
+            "personajes": [
+                "Woody",
+                "Buzz Lightyear",
+                "Jessie",
+                "Rex"
+            ]
+        }
+    },
+    {
+        "id": "14",
+        "name": "The Social Network",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/2GtDmIdxkJ5NZG97yhJQtM8Wn1H.jpg",
+        "overview": "La historia del ascenso meteórico de Facebook, desde su creación en una dormitorio universitario hasta convertirse en un fenómeno global. Un drama sobre amistad, traición y poder.",
+        "trailer_url": "https://www.youtube.com/watch?v=lB95KLmpLR4",
+        "release_date": "2010-10-01",
+        "rating": 7.7,
+        "genres": [
+            "Drama",
+            "Historia"
+        ],
+        "historia": {
+            "origen": "Basado en el libro 'The Accidental Billionaires'",
+            "director": "David Fincher",
+            "personajes": [
+                "Mark Zuckerberg",
+                "Eduardo Saverin",
+                "Sean Parker"
+            ]
+        }
+    },
+    {
+        "id": "15",
+        "name": "Whiplash",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/uy36CPy5ARuC8qrH8Esg2ndFyJ5.jpg",
+        "overview": "Un joven batería de jazz aspira a la grandeza bajo la tutela de un instructor implacable. Una intensa historia sobre la obsesión, el perfeccionismo y el sacrificio.",
+        "trailer_url": "https://www.youtube.com/watch?v=7d_jQycdQGo",
+        "release_date": "2014-10-10",
+        "rating": 8.5,
+        "genres": [
+            "Drama",
+            "Música"
+        ],
+        "historia": {
+            "origen": "Basado en las experiencias del director",
+            "director": "Damien Chazelle",
+            "personajes": [
+                "Andrew Neiman",
+                "Terence Fletcher",
+                "Nicole"
+            ]
+        }
+    },
+    {
+        "id": "16",
+        "name": "La La Land",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/7pFsAaJmiOppVHcldBzg8JKBHwe.jpg",
+        "overview": "Un pianista de jazz y una aspirante a actriz se enamoran en Los Ángeles mientras persiguen sus sueños. Un musical moderno sobre el amor, el arte y las decisiones.",
+        "trailer_url": "https://www.youtube.com/watch?v=0pdqf4P9MB8",
+        "release_date": "2016-12-09",
+        "rating": 8.0,
+        "genres": [
+            "Drama",
+            "Música",
+            "Romance"
+        ],
+        "historia": {
+            "origen": "Homenaje a los musicales clásicos de Hollywood",
+            "director": "Damien Chazelle",
+            "personajes": [
+                "Sebastian Wilder",
+                "Mia Dolan",
+                "Keith"
+            ]
+        }
+    },
+    {
+        "id": "17",
+        "name": "The Grand Budapest Hotel",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/1wk0vpNCX5T40KsGQKjfoDAhmJw.jpg",
+        "overview": "Un conserje legendario y su joven protegido deben demostrar su inocencia después de ser acusados del asesinato de una millonaria. Una comedia de enredos en un hotel europeo.",
+        "trailer_url": "https://www.youtube.com/watch?v=1Fg5iWmQjwk",
+        "release_date": "2014-03-07",
+        "rating": 8.1,
+        "genres": [
+            "Comedia",
+            "Aventura",
+            "Drama"
+        ],
+        "historia": {
+            "origen": "Inspirado en los escritos de Stefan Zweig",
+            "director": "Wes Anderson",
+            "personajes": [
+                "M. Gustave",
+                "Zero",
+                "Madame D.",
+                "Dmitri"
+            ]
+        }
+    },
+    {
+        "id": "18",
+        "name": "Mad Max: Fury Road",
+        "poster_url": "https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg",
+        "overview": "En un mundo post-apocalíptico, la guerrera Furiosa se une a Max para escapar de un tirano y llevar a un grupo de mujeres a la libertad. Una persecución épica en el desierto.",
+        "trailer_url": "https://www.youtube.com/watch?v=hEJnMQG9ev8",
+        "release_date": "2015-05-15",
+        "rating": 8.1,
+        "genres": [
+            "Acción",
+            "Aventura",
+            "Ciencia Ficción"
+        ],
+        "historia": {
+            "origen": "Continuación de la saga Mad Max",
+            "director": "George Miller",
+            "personajes": [
+                "Max Rockatansky",
+                "Imperator Furiosa",
+                "Immortan Joe"
+            ]
+        }
+    },
+    {
+        "id": "19",
+        "name": "The Wolf of Wall Street",
+        "poster_url": "https://image.tmdb.org/t/p/w1280/uthRoUeTtiep5HCoySlOjQSPCbJ.jpg",
+        "overview": "La verdadera historia de Jordan Belfort, un corredor de bolsa que construyó un imperio de corrupción y excesos en Wall Street durante los años 90. Una comedia oscura sobre el dinero y el poder.",
+        "trailer_url": "https://www.youtube.com/watch?v=iszwuX1AK6A",
+        "release_date": "2013-12-25",
+        "rating": 8.2,
+        "genres": [
+            "Drama",
+            "Comedia",
+            "Crimen"
+        ],
+        "historia": {
+            "origen": "Basado en las memorias de Jordan Belfort",
+            "director": "Martin Scorsese",
+            "personajes": [
+                "Jordan Belfort",
+                "Donnie Azoff",
+                "Naomi Lapaglia"
+            ]
+        }
+    },
+    {
+        "id": "20",
+        "name": "Coco",
+        "poster_url": "https://image.tmdb.org/t/p/w500/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",
+        "overview": "Un joven músico viaja a la Tierra de los Muertos para encontrar a su ídolo musical y descubrir los secretos de su familia. Una celebración de la música, la familia y la tradición.",
+        "trailer_url": "https://www.youtube.com/watch?v=R7wo-0Q0u4g",
+        "release_date": "2017-11-22",
+        "rating": 8.4,
+        "genres": [
+            "Animación",
+            "Aventura",
+            "Familia",
+            "Música"
+        ],
+        "historia": {
+            "origen": "Inspirado en el Día de los Muertos mexicano",
+            "director": "Lee Unkrich, Adrian Molina",
+            "personajes": [
+                "Miguel",
+                "Héctor",
+                "Ernesto de la Cruz",
+                "Mamá Imelda"
+            ]
+        }
+    }
+]

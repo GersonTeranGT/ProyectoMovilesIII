@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/screens/HomeScreen.dart';
 import 'package:proyecto_moviles3/screens/PaginaFormulario.dart';
 import 'package:proyecto_moviles3/screens/PaginaInicio.dart';
 import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
@@ -18,6 +19,7 @@ class MainApp extends StatelessWidget {
         '/': (context)=> PaginaInicio(),
         '/PaginaFormulario': (context)=> PaginaFormulario(),
         '/PaginaInicio': (context)=> PaginaLogin(),
+        '/HomeScreen':(context) => HomeScreen()
         //'/': (context)=> ,
       },
     );
