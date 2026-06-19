@@ -12,7 +12,7 @@ class PaginaLogin extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Bienvenido a DMC",
+              "Bienvenido a FLIXTREAM",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 26,
