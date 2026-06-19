@@ -34,6 +34,10 @@ class HomeScreen extends StatelessWidget {
               _mostrarMensaje(context, 'Perfil');
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.exit_to_app, color: Colors.white),
+            onPressed: ()=> regresar(context),
+          ),
         ],
       ),
       body: Padding(
@@ -241,4 +245,9 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+void regresar(context){
+  return(
+    Navigator.pop(context)
+  );
 }
