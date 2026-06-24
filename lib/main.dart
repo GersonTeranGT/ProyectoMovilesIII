@@ -4,7 +4,14 @@ import 'package:proyecto_moviles3/screens/PaginaFormulario.dart';
 import 'package:proyecto_moviles3/screens/PaginaInicio.dart';
 import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
 
-void main() {
+//FIREBASE
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MainApp());
 }
 
@@ -16,10 +23,10 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context)=> PaginaInicio(),
-        '/paginaFormulario': (context)=> PaginaFormulario(),
-        '/paginaLogin': (context)=> PaginaLogin(),
-        '/HomeScreen':(context) => HomeScreen()
+        '/': (context) => PaginaInicio(),
+        '/paginaFormulario': (context) => PaginaFormulario(),
+        '/paginaLogin': (context) => PaginaLogin(),
+        '/HomeScreen': (context) => HomeScreen(),
         //'/': (context)=> ,
       },
     );
