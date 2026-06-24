@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "818780426990",
+    "firebase_url": "https://flixtream-3b814-default-rtdb.firebaseio.com",
+    "project_id": "flixtream-3b814",
+    "storage_bucket": "flixtream-3b814.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818780426990:android:5f53df59ccd3dbe3e9d9ff",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_moviles3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGJMii0j2wRTPepjIrbLRGVSNeLE-5ee0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
