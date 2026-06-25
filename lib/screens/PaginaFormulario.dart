@@ -38,13 +38,16 @@ class PaginaFormulario extends StatelessWidget {
 }
 
 Widget formulario(context) {
-
+  TextEditingController nombre = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController edad = TextEditingController();
   TextEditingController correo = TextEditingController();
   TextEditingController contrasenia = TextEditingController();
 
   return Column(
     children: [
       TextField(
+        controller: nombre,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -54,10 +57,10 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
+      
       Text(""),
-
       TextField(
+        controller: username,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -69,8 +72,8 @@ Widget formulario(context) {
       ),
 
       Text(""),
-
       TextField(
+        controller: edad,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -82,7 +85,6 @@ Widget formulario(context) {
       ),
 
       Text(""),
-
       TextField(
         controller: correo,
         style: TextStyle(color: Colors.white),
@@ -96,7 +98,6 @@ Widget formulario(context) {
       ),
 
       Text(""),
-
       TextField(
         controller: contrasenia,
         obscureText: true,
@@ -111,7 +112,6 @@ Widget formulario(context) {
       ),
 
       Text(""),
-
       TextField(
         obscureText: true,
         style: TextStyle(color: Colors.white),
@@ -125,23 +125,20 @@ Widget formulario(context) {
       ),
 
       Text(""),
-
       FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
         ),
-        onPressed: () => registro(context, correo, contrasenia),
+        onPressed: () =>
+            registro(context, nombre, username, edad, correo, contrasenia),
         child: Text("Registrate", style: TextStyle(color: Colors.white)),
       ),
-
       Text(""),
-
       Text(
         "Ya tienes una cuenta ?",
         style: TextStyle(color: Colors.white70),
       ),
-
       FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: Colors.red,
@@ -153,13 +150,24 @@ Widget formulario(context) {
   );
 }
 
-Future<void> registro(context, correo, contrasenia) async {
+Future<void> registro(
+    context, nombre, username, edad, correo, contrasenia) async {
   final AuthResponse res = await supabase.auth.signUp(
     email: correo.text,
     password: contrasenia.text,
   );
   final Session? session = res.session;
   final User? user = res.user;
+
+  if (user != null) {
+    await supabase.from('usuarios').insert({
+      'user_id': user.id,
+      'nombre_completo': nombre.text,
+      'username': username.text,
+      'edad': int.parse(edad.text),
+      'correo': correo.text,
+    });
+  }
 
   Navigator.pushNamed(context, "/paginaLogin");
 }
