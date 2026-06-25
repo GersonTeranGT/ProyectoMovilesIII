@@ -307,13 +307,6 @@ class _PerfilScreenState extends State<PerfilScreen> {
                   label: 'Edad',
                   value: '$edad años',
                 ),
-                //id usuario
-                construirInfoCard(
-                  icon: Icons.fingerprint,
-                  label: 'ID de Usuario',
-                  value: userData?['id'] ?? 'no disponible',
-                  isCopyable: true,
-                ),
                 const SizedBox(height: 24),
                 //botones accion
                 Row(
