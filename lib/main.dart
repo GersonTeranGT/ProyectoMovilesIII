@@ -6,14 +6,21 @@ import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
 
 //FIREBASE
 import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  await Supabase.initialize(
+    url: 'https://mqcfjkbwxugibempjbju.supabase.co',
+    publishableKey: 'sb_publishable_6fjLsw-BOVNMAjN8fFILQQ_0PoeCrHu',
+  );
   runApp(const MainApp());
 }
+
+//supabase
+final supabase = Supabase.instance.client;
+//////////////////////
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
