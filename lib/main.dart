@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/HomeScreen',
+      initialRoute: '/',
       routes: {
         '/': (context) => PaginaInicio(),
         '/paginaFormulario': (context) => PaginaFormulario(),

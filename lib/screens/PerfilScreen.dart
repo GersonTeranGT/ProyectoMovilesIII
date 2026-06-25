@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/main.dart';
+import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PerfilScreen extends StatefulWidget {
@@ -25,13 +26,33 @@ class _PerfilScreenState extends State<PerfilScreen> {
       final user = supabase.auth.currentUser;
       
       if (user != null) {
-        userData = {
-          'email': user.email ?? 'no disponible',
-          'id': user.id,
-          'created_at': user.createdAt?.toString() ?? 'no disponible',
-          'phone': user.phone ?? 'no disponible',
-          'user_metadata': user.userMetadata ?? {},
-        };
+        final response = await supabase
+            .from('usuarios')
+            .select()
+            .eq('user_id', user.id)
+            .maybeSingle();
+        
+        if (response != null) {
+          userData = {
+            'email': user.email ?? 'no disponible',
+            'id': user.id,
+            'created_at': user.createdAt?.toString() ?? 'no disponible',
+            'nombre_completo': response['nombre_completo'] ?? 'no disponible',
+            'username': response['username'] ?? 'no disponible',
+            'edad': response['edad']?.toString() ?? 'no disponible',
+            'correo': response['correo'] ?? user.email ?? 'no disponible',
+          };
+        } else {
+          userData = {
+            'email': user.email ?? 'no disponible',
+            'id': user.id,
+            'created_at': user.createdAt?.toString() ?? 'no disponible',
+            'nombre_completo': user.userMetadata?['nombre_completo'] ?? 'no disponible',
+            'username': user.userMetadata?['username'] ?? user.email?.split('@').first ?? 'usuario',
+            'edad': user.userMetadata?['edad']?.toString() ?? 'no disponible',
+            'correo': user.email ?? 'no disponible',
+          };
+        }
       }
       
       setState(() {
@@ -45,7 +66,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
     }
   }
 
-  //funcion cerrar sesion
+  //funcion cerrar sesion - con limpieza de pila
   void cerrarSesion(BuildContext context) {
     showDialog(
       context: context,
@@ -71,8 +92,11 @@ class _PerfilScreenState extends State<PerfilScreen> {
             TextButton(
               onPressed: () async {
                 await supabase.auth.signOut();
-                Navigator.pop(context);
-                Navigator.pushReplacementNamed(context, '/paginaLogin');
+                //limpiar toda la pila y navegar al login
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const PaginaLogin()),
+                  (route) => false,
+                );
               },
               child: const Text(
                 'Cerrar Sesion',
@@ -162,8 +186,11 @@ class _PerfilScreenState extends State<PerfilScreen> {
 
   //widget contenido perfil
   Widget construirPerfilContent() {
-    final user = supabase.auth.currentUser;
-    final metadata = userData?['user_metadata'] as Map? ?? {};
+    final nombre = userData?['nombre_completo'] ?? 'Usuario';
+    final username = userData?['username'] ?? 'usuario';
+    final email = userData?['correo'] ?? userData?['email'] ?? 'no disponible';
+    final edad = userData?['edad'] ?? 'no disponible';
+    final fechaRegistro = userData?['created_at']?.split(' ').first ?? '2024';
 
     return SingleChildScrollView(
       child: Column(
@@ -194,20 +221,16 @@ class _PerfilScreenState extends State<PerfilScreen> {
                       color: Colors.red,
                       width: 3,
                     ),
-                    image: DecorationImage(
-                      image: user?.userMetadata?['avatar_url'] != null
-                          ? NetworkImage(user!.userMetadata!['avatar_url'])
-                          : const AssetImage('assets/images/default_avatar.png') as ImageProvider,
+                    image: const DecorationImage(
+                      image: AssetImage('assets/images/default_avatar.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
-                //nombre usuario
+                //nombre completo
                 Text(
-                  user?.userMetadata?['username'] ??
-                  user?.email?.split('@').first ??
-                  'Usuario',
+                  nombre,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -216,7 +239,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  user?.email ?? 'sin correo',
+                  '@$username',
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
@@ -234,7 +257,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    'miembro desde ${userData?['created_at']?.split(' ').first ?? '2024'}',
+                    'miembro desde $fechaRegistro',
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 12,
@@ -260,38 +283,37 @@ class _PerfilScreenState extends State<PerfilScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                //email
+                //nombre completo
+                construirInfoCard(
+                  icon: Icons.person,
+                  label: 'Nombre Completo',
+                  value: nombre,
+                ),
+                //username
+                construirInfoCard(
+                  icon: Icons.account_circle,
+                  label: 'Usuario',
+                  value: '@$username',
+                ),
+                //correo
                 construirInfoCard(
                   icon: Icons.email,
                   label: 'Correo Electronico',
-                  value: user?.email ?? 'no disponible',
+                  value: email,
+                ),
+                //edad
+                construirInfoCard(
+                  icon: Icons.cake,
+                  label: 'Edad',
+                  value: '$edad años',
                 ),
                 //id usuario
                 construirInfoCard(
-                  icon: Icons.person_outline,
+                  icon: Icons.fingerprint,
                   label: 'ID de Usuario',
-                  value: user?.id ?? 'no disponible',
+                  value: userData?['id'] ?? 'no disponible',
                   isCopyable: true,
                 ),
-                //telefono
-                if (user?.phone != null)
-                  construirInfoCard(
-                    icon: Icons.phone,
-                    label: 'Telefono',
-                    value: user?.phone ?? 'no disponible',
-                  ),
-                //metadata adicional
-                if (metadata.isNotEmpty)
-                  ...metadata.entries.map((entry) {
-                    if (entry.key != 'avatar_url' && entry.key != 'username') {
-                      return construirInfoCard(
-                        icon: Icons.info_outline,
-                        label: entry.key,
-                        value: entry.value.toString(),
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  }).toList(),
                 const SizedBox(height: 24),
                 //botones accion
                 Row(
@@ -299,7 +321,6 @@ class _PerfilScreenState extends State<PerfilScreen> {
                     Expanded(
                       child: ElevatedButton.icon(
                         onPressed: () {
-                          //editar perfil
                           mostrarMensaje(context, 'Editar perfil');
                         },
                         style: ElevatedButton.styleFrom(
@@ -415,7 +436,6 @@ class _PerfilScreenState extends State<PerfilScreen> {
                 size: 18,
               ),
               onPressed: () {
-                //copiar al portapapeles
                 mostrarMensaje(context, 'ID copiado al portapapeles');
               },
             ),
