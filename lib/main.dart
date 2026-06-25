@@ -5,9 +5,9 @@ import 'package:proyecto_moviles3/screens/PaginaInicio.dart';
 import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
 
 //FIREBASE
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'firebase_options.dart';
+//import 'firebase_options.dart';
 
 Future<void> main() async {
 
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/HomeScreen',
       routes: {
         '/': (context) => PaginaInicio(),
         '/paginaFormulario': (context) => PaginaFormulario(),

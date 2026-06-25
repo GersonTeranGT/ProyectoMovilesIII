@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/main.dart';
 import 'package:proyecto_moviles3/screens/DetallePelicula.dart';
+import 'package:proyecto_moviles3/screens/PerfilScreen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,25 +28,30 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {
-              _mostrarMensaje(context, 'Busqueda');
+              mostrarMensaje(context, 'Busqueda');
             },
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {
-              _mostrarMensaje(context, 'Perfil');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PerfilScreen(),
+                ),
+              );
             },
           ),
           IconButton(
             icon: const Icon(Icons.exit_to_app, color: Colors.white),
-            onPressed: ()=> regresar(context),
+            onPressed: () => cerrarSesion(context),
           ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder(
-          future: _cargarPeliculas(context),
+          future: cargarPeliculas(context),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -122,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                 itemCount: peliculas.length,
                 itemBuilder: (context, index) {
                   final pelicula = peliculas[index];
-                  return _buildMovieCard(context, pelicula);
+                  return construirMovieCard(context, pelicula);
                 },
               );
             }
@@ -140,7 +148,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   //funcion cargar peliculas
-  Future<List<dynamic>> _cargarPeliculas(BuildContext context) async {
+  Future<List<dynamic>> cargarPeliculas(BuildContext context) async {
     try {
       String jsonString = await DefaultAssetBundle.of(context)
           .loadString("assets/data/peliculas.json");
@@ -152,7 +160,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   //funcion construir tarjeta
-  Widget _buildMovieCard(BuildContext context, dynamic pelicula) {
+  Widget construirMovieCard(BuildContext context, dynamic pelicula) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -235,8 +243,48 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  //funcion cerrar sesion
+  void cerrarSesion(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[900],
+          title: const Text(
+            'Cerrar Sesion',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: const Text(
+            '¿Estas seguro de que quieres cerrar sesion?',
+            style: TextStyle(color: Colors.white70),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text(
+                'Cancelar',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                await supabase.auth.signOut();
+                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/paginaLogin');
+              },
+              child: const Text(
+                'Cerrar Sesion',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //funcion mostrar mensaje
-  void _mostrarMensaje(BuildContext context, String mensaje) {
+  void mostrarMensaje(BuildContext context, String mensaje) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(mensaje),
@@ -245,9 +293,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-void regresar(context){
-  return(
-    Navigator.pop(context)
-  );
 }
