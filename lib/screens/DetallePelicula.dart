@@ -28,7 +28,7 @@ class DetallePelicula extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.share, color: Colors.white),
             onPressed: () {
-              _mostrarMensaje(context, 'Compartir: ${pelicula['name']}');
+              mostrarMensaje(context, 'Compartir: ${pelicula['name']}');
             },
           ),
         ],
@@ -171,11 +171,11 @@ class DetallePelicula extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     if (pelicula['historia']['origen'] != null)
-                      _buildInfoRow('Origen', pelicula['historia']['origen']),
+                      construirInfoRow('Origen', pelicula['historia']['origen']),
                     if (pelicula['historia']['director'] != null)
-                      _buildInfoRow('Director', pelicula['historia']['director']),
+                      construirInfoRow('Director', pelicula['historia']['director']),
                     if (pelicula['historia']['personajes'] != null)
-                      _buildInfoRow(
+                      construirInfoRow(
                         'Personajes',
                         pelicula['historia']['personajes'].join(', '),
                       ),
@@ -187,7 +187,7 @@ class DetallePelicula extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            _mostrarMensaje(context, 'Reproduciendo: ${pelicula['name']}');
+                            mostrarMensaje(context, 'Reproduciendo: ${pelicula['name']}');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
@@ -210,7 +210,7 @@ class DetallePelicula extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            _mostrarMensaje(context, 'Descargando: ${pelicula['name']}');
+                            mostrarMensaje(context, 'Descargando: ${pelicula['name']}');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.grey[800],
@@ -238,9 +238,9 @@ class DetallePelicula extends StatelessWidget {
                       onPressed: () {
                         String url = pelicula['trailer_url'] ?? '';
                         if (url.isNotEmpty) {
-                          _mostrarMensaje(context, 'Abriendo en YouTube: ${pelicula['name']}');
+                          mostrarMensaje(context, 'Abriendo en YouTube: ${pelicula['name']}');
                         } else {
-                          _mostrarMensaje(context, 'No hay trailer disponible');
+                          mostrarMensaje(context, 'No hay trailer disponible');
                         }
                       },
                       icon: const Icon(Icons.youtube_searched_for, color: Colors.red),
@@ -263,7 +263,7 @@ class DetallePelicula extends StatelessWidget {
   }
 
   //funcion fila informacion
-  Widget _buildInfoRow(String label, String value) {
+  Widget construirInfoRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -295,7 +295,7 @@ class DetallePelicula extends StatelessWidget {
   }
 
   //funcion mostrar mensaje
-  void _mostrarMensaje(BuildContext context, String mensaje) {
+  void mostrarMensaje(BuildContext context, String mensaje) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(mensaje),
