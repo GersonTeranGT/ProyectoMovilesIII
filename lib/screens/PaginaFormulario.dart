@@ -38,13 +38,17 @@ class PaginaFormulario extends StatelessWidget {
 }
 
 Widget formulario(context) {
-
+  TextEditingController nombre = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController edad = TextEditingController();
   TextEditingController correo = TextEditingController();
   TextEditingController contrasenia = TextEditingController();
 
   return Column(
     children: [
+      Text(""),
       TextField(
+        controller: nombre,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -54,10 +58,9 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
       Text(""),
-
       TextField(
+        controller: username,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -67,10 +70,9 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
       Text(""),
-
       TextField(
+        controller: edad,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -80,9 +82,7 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
       Text(""),
-
       TextField(
         controller: correo,
         style: TextStyle(color: Colors.white),
@@ -94,9 +94,7 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
       Text(""),
-
       TextField(
         controller: contrasenia,
         obscureText: true,
@@ -109,9 +107,7 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
       Text(""),
-
       TextField(
         obscureText: true,
         style: TextStyle(color: Colors.white),
@@ -123,25 +119,21 @@ Widget formulario(context) {
           labelStyle: TextStyle(color: Colors.grey),
         ),
       ),
-
       Text(""),
-
       FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
         ),
-        onPressed: () => registro(context, correo, contrasenia),
+        onPressed: () =>
+            registro(context, nombre, username, edad, correo, contrasenia),
         child: Text("Registrate", style: TextStyle(color: Colors.white)),
       ),
-
       Text(""),
-
       Text(
         "Ya tienes una cuenta ?",
         style: TextStyle(color: Colors.white70),
       ),
-
       FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: Colors.red,
@@ -153,13 +145,100 @@ Widget formulario(context) {
   );
 }
 
-Future<void> registro(context, correo, contrasenia) async {
-  final AuthResponse res = await supabase.auth.signUp(
-    email: correo.text,
-    password: contrasenia.text,
-  );
-  final Session? session = res.session;
-  final User? user = res.user;
+Future<void> registro(
+    context, nombre, username, edad, correo, contrasenia) async {
+  try {
+    final AuthResponse res = await supabase.auth.signUp(
+      email: correo.text,
+      password: contrasenia.text,
+    );
+    final Session? session = res.session;
+    final User? user = res.user;
 
-  Navigator.pushNamed(context, "/paginaLogin");
+    if (user != null) {
+      await supabase.from('usuarios').insert({
+        'user_id': user.id,
+        'nombre_completo': nombre.text,
+        'username': username.text,
+        'edad': int.parse(edad.text),
+        'correo': correo.text,
+      });
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[900],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: Row(
+            children: [
+              Icon(Icons.check_circle, color: Colors.green),
+              SizedBox(width: 10),
+              Text("Bienvenido/a", style: TextStyle(color: Colors.green),),
+            ],
+          ),
+          content: Text("Registro exitoso", style: TextStyle(color: Colors.white70),),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/paginaLogin");
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
+              child: Text("Iniciar sesion", style: TextStyle(color: Colors.white),),
+            ),
+          ],
+        );
+      },
+    );
+
+  } catch (e) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[900],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+
+          title: Row(
+            children: [
+              Icon(Icons.error, color: Colors.red),
+              SizedBox(width: 10),
+              Text(
+                "Error",
+                style: TextStyle(color: Colors.red),
+              ),
+            ],
+          ),
+
+          content: Text(
+            "El correo ya está registrado",
+            style: TextStyle(color: Colors.white70),
+          ),
+
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+              ),
+              child: Text(
+                "Aceptar",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

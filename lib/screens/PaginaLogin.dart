@@ -44,6 +44,7 @@ Widget formulario(context) {
 
   return Column(
     children: [
+      Text(""),
       TextField(
         controller: correo,
         style: TextStyle(color: Colors.white),
