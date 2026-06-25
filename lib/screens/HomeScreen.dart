@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/main.dart';
 import 'package:proyecto_moviles3/screens/DetallePelicula.dart';
+import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
 import 'package:proyecto_moviles3/screens/PerfilScreen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -243,7 +244,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  //funcion cerrar sesion
+  //funcion cerrar sesion - con limpieza de pila
   void cerrarSesion(BuildContext context) {
     showDialog(
       context: context,
@@ -269,8 +270,11 @@ class HomeScreen extends StatelessWidget {
             TextButton(
               onPressed: () async {
                 await supabase.auth.signOut();
-                Navigator.pop(context);
-                Navigator.pushReplacementNamed(context, '/paginaLogin');
+                //limpiar toda la pila y navegar al login
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const PaginaLogin()),
+                  (route) => false,
+                );
               },
               child: const Text(
                 'Cerrar Sesion',
