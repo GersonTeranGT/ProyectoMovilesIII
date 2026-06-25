@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles3/main.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PaginaFormulario extends StatelessWidget {
   const PaginaFormulario({super.key});
@@ -36,6 +38,10 @@ class PaginaFormulario extends StatelessWidget {
 }
 
 Widget formulario(context) {
+
+  TextEditingController correo = TextEditingController();
+  TextEditingController contrasenia = TextEditingController();
+
   return Column(
     children: [
       TextField(
@@ -78,6 +84,7 @@ Widget formulario(context) {
       Text(""),
 
       TextField(
+        controller: correo,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
@@ -91,6 +98,7 @@ Widget formulario(context) {
       Text(""),
 
       TextField(
+        controller: contrasenia,
         obscureText: true,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
@@ -123,7 +131,7 @@ Widget formulario(context) {
           backgroundColor: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
         ),
-        onPressed: () => Navigator.pushNamed(context, "/paginaLogin"),
+        onPressed: () => registro(context, correo, contrasenia),
         child: Text("Registrate", style: TextStyle(color: Colors.white)),
       ),
 
@@ -143,4 +151,15 @@ Widget formulario(context) {
       ),
     ],
   );
+}
+
+Future<void> registro(context, correo, contrasenia) async {
+  final AuthResponse res = await supabase.auth.signUp(
+    email: correo.text,
+    password: contrasenia.text,
+  );
+  final Session? session = res.session;
+  final User? user = res.user;
+
+  Navigator.pushNamed(context, "/paginaLogin");
 }
