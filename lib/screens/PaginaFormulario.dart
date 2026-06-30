@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+///////////////////////////////////////////////////////////
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+///////////////////////////////////////////////////////////
+
 class PaginaFormulario extends StatelessWidget {
   const PaginaFormulario({super.key});
 
@@ -29,7 +34,7 @@ class PaginaFormulario extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            formulario(context)
+            const Formulario()
           ],
         ),
       ),
@@ -37,116 +42,300 @@ class PaginaFormulario extends StatelessWidget {
   }
 }
 
-Widget formulario(context) {
+class Formulario extends StatefulWidget {
+  const Formulario({super.key});
+
+  @override
+  State<Formulario> createState() => _FormularioState();
+}
+
+class _FormularioState extends State<Formulario> {
+
+////////////////////////////////////////////////////////////
   TextEditingController nombre = TextEditingController();
   TextEditingController username = TextEditingController();
   TextEditingController edad = TextEditingController();
   TextEditingController correo = TextEditingController();
   TextEditingController contrasenia = TextEditingController();
 
-  return Column(
-    children: [
-      Text(""),
-      TextField(
-        controller: nombre,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[900],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          labelText: "Nombre Completo",
-          labelStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-      Text(""),
-      TextField(
-        controller: username,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[900],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          labelText: "Usuario / Username",
-          labelStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-      Text(""),
-      TextField(
-        controller: edad,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[900],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          labelText: "Edad",
-          labelStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-      Text(""),
-      TextField(
-        controller: correo,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[900],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          labelText: "Correo Electronico",
-          labelStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-      Text(""),
-      TextField(
-        controller: contrasenia,
-        obscureText: true,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[900],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          labelText: "Contraseña",
-          labelStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-      Text(""),
-      TextField(
-        obscureText: true,
-        style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[900],
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          labelText: "Confirmar Contraseña",
-          labelStyle: TextStyle(color: Colors.grey),
-        ),
-      ),
-      Text(""),
-      FilledButton(
-        style: FilledButton.styleFrom(
-          backgroundColor: Colors.red,
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-        ),
-        onPressed: () =>
-            registro(context, nombre, username, edad, correo, contrasenia),
-        child: Text("Registrate", style: TextStyle(color: Colors.white)),
-      ),
-      Text(""),
-      Text(
-        "Ya tienes una cuenta ?",
-        style: TextStyle(color: Colors.white70),
-      ),
-      FilledButton(
-        style: FilledButton.styleFrom(
-          backgroundColor: Colors.red,
-        ),
-        onPressed: () => Navigator.pushNamed(context, "/paginaLogin"),
-        child: Text("Iniciar sesion", style: TextStyle(color: Colors.white)),
-      ),
-    ],
+  XFile? foto;
+////////////////////////////////////////////////////////////
+
+////////////////ACTUALIZAR IMAGEN////////////////
+void actualizarImagen(XFile? nuevaImagen) {
+  setState(() {
+    foto = nuevaImagen;
+  });
+}
+/////////////////////////////////////////////////
+
+/////////////////////ABRIR GALERIA///////////////////////////
+Future<void> abrirGaleria() async {
+
+  final imagen = await ImagePicker().pickImage(
+    source: ImageSource.gallery,
   );
+
+  actualizarImagen(imagen);
+
+}
+////////////////////////////////////////////////////////////
+
+/////////////////////ABRIR CAMARA///////////////////////////
+Future<void> abrirCamara() async {
+
+  final imagen = await ImagePicker().pickImage(
+    source: ImageSource.camera,
+  );
+
+  actualizarImagen(imagen);
+
+}
+////////////////////////////////////////////////////////////
+
+/////////////////////MOSTRAR OPCIONES////////////////////////
+void mostrarOpcionesImagen() {
+
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.grey[900],
+    builder: (context) {
+
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+
+          ListTile(
+            leading: const Icon(
+              Icons.photo,
+              color: Colors.white,
+            ),
+            title: const Text(
+              "Galería",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              abrirGaleria();
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(
+              Icons.camera_alt,
+              color: Colors.white,
+            ),
+            title: const Text(
+              "Cámara",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              abrirCamara();
+            },
+          ),
+
+        ],
+      );
+
+    },
+  );
+
+}
+////////////////////////////////////////////////////////////
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: [
+
+////////////////////////////////////////////////////////////
+GestureDetector(
+  onTap: mostrarOpcionesImagen,
+  child: CircleAvatar(
+    radius: 50,
+    backgroundColor: Colors.red,
+
+    backgroundImage:
+        foto == null
+            ? FileImage(
+                File(foto!.path),
+              )
+            : null,
+
+    child: foto == null
+        ? const Icon(
+            Icons.camera_alt,
+            color: Colors.white,
+            size: 35,
+          )
+        : null,
+  ),
+),
+
+const SizedBox(height: 10),
+
+const Text(
+  "Seleccionar Foto",
+  style: TextStyle(
+    color: Colors.white70,
+  ),
+),
+////////////////////////////////////////////////////////////
+
+        Text(""),
+
+        TextField(
+          controller: nombre,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[900],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            labelText: "Nombre Completo",
+            labelStyle: const TextStyle(color: Colors.grey),
+          ),
+        ),
+
+        Text(""),
+
+        TextField(
+          controller: username,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[900],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            labelText: "Usuario / Username",
+            labelStyle: const TextStyle(color: Colors.grey),
+          ),
+        ),
+
+        Text(""),
+
+        TextField(
+          controller: edad,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[900],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            labelText: "Edad",
+            labelStyle: const TextStyle(color: Colors.grey),
+          ),
+        ),
+
+        Text(""),
+
+        TextField(
+          controller: correo,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[900],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            labelText: "Correo Electronico",
+            labelStyle: const TextStyle(color: Colors.grey),
+          ),
+        ),
+
+        Text(""),
+
+        TextField(
+          controller: contrasenia,
+          obscureText: true,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[900],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            labelText: "Contraseña",
+            labelStyle: const TextStyle(color: Colors.grey),
+          ),
+        ),
+
+        Text(""),
+
+        TextField(
+          obscureText: true,
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[900],
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            labelText: "Confirmar Contraseña",
+            labelStyle: const TextStyle(color: Colors.grey),
+          ),
+        ),
+
+        Text(""),
+
+        FilledButton(
+          style: FilledButton.styleFrom(
+            backgroundColor: Colors.red,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 40,
+              vertical: 15,
+            ),
+          ),
+          onPressed: () => registro(
+            context,
+            nombre,
+            username,
+            edad,
+            correo,
+            contrasenia,
+            foto,
+          ),
+          child: const Text(
+            "Registrate",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+
+        Text(""),
+
+        const Text(
+          "Ya tienes una cuenta ?",
+          style: TextStyle(color: Colors.white70),
+        ),
+
+        FilledButton(
+          style: FilledButton.styleFrom(
+            backgroundColor: Colors.red,
+          ),
+          onPressed: () =>
+              Navigator.pushNamed(context, "/paginaLogin"),
+          child: const Text(
+            "Iniciar sesion",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
+
 Future<void> registro(
-    context, nombre, username, edad, correo, contrasenia) async {
+    context, nombre, username, edad, correo, contrasenia, XFile? foto) async {
   try {
     final AuthResponse res = await supabase.auth.signUp(
       email: correo.text,
@@ -155,6 +344,25 @@ Future<void> registro(
     final Session? session = res.session;
     final User? user = res.user;
 
+////////////////////////////////////////////////////////////
+    String? urlImagen;
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+  if (foto != null && user != null) {
+    final avatarFile = File(foto.path);
+    final nombreImagen = "${user.id}.png";
+  await supabase.storage.from('Avatares').
+  upload(nombreImagen,avatarFile,
+    fileOptions: const FileOptions(upsert: true,),);
+
+  urlImagen = supabase.storage
+      .from('Avatares')
+      .getPublicUrl(nombreImagen);
+}
+////////////////////////////////////////////////////////////
+
+
     if (user != null) {
       await supabase.from('usuarios').insert({
         'user_id': user.id,
@@ -162,6 +370,7 @@ Future<void> registro(
         'username': username.text,
         'edad': int.parse(edad.text),
         'correo': correo.text,
+        'foto': urlImagen,
       });
     }
 
