@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ComentariosScreen.dart';
 
 class DetallePelicula extends StatelessWidget {
   final dynamic pelicula;
@@ -210,7 +211,15 @@ class DetallePelicula extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            mostrarMensaje(context, 'Descargando: ${pelicula['name']}');
+                            //navegar a comentarios
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ComentariosScreen(
+                                  pelicula: pelicula,
+                                ),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.grey[800],
@@ -219,9 +228,9 @@ class DetallePelicula extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          icon: const Icon(Icons.download, color: Colors.white),
+                          icon: const Icon(Icons.comment, color: Colors.white),
                           label: const Text(
-                            'Descargar',
+                            'Comentarios',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -231,7 +240,7 @@ class DetallePelicula extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
                   //boton ver trailer
                   Center(
                     child: TextButton.icon(
