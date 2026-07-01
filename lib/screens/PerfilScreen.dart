@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles3/main.dart';
+import 'package:proyecto_moviles3/screens/PaginaInicio.dart';
 import 'package:proyecto_moviles3/screens/PaginaLogin.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -94,7 +95,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
                 await supabase.auth.signOut();
                 //limpiar toda la pila y navegar al login
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const PaginaLogin()),
+                  MaterialPageRoute(builder: (context) => const PaginaInicio()),
                   (route) => false,
                 );
               },
