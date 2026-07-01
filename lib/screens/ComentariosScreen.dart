@@ -409,7 +409,7 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
     }
   }
 
-  //widget tarjeta comentario
+  //widget tarjeta comentario - VERSION CORREGIDA
   Widget construirTarjetaComentario({
     required Map<String, dynamic> comentario,
     required int index,
@@ -456,7 +456,10 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                //fila de nombres - con FLEXIBLE para evitar desvordamiento
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
                   children: [
                     Text(
                       username,
@@ -466,7 +469,6 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
                         fontSize: 14,
                       ),
                     ),
-                    const SizedBox(width: 8),
                     Text(
                       nombreCompleto,
                       style: TextStyle(
@@ -474,7 +476,6 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
                         fontSize: 12,
                       ),
                     ),
-                    const SizedBox(width: 8),
                     Text(
                       fecha,
                       style: TextStyle(
@@ -482,8 +483,7 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
                         fontSize: 11,
                       ),
                     ),
-                    if (esAutor) ...[
-                      const SizedBox(width: 8),
+                    if (esAutor)
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,
@@ -502,10 +502,10 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
                           ),
                         ),
                       ),
-                    ],
                   ],
                 ),
                 const SizedBox(height: 4),
+                //comentario
                 Text(
                   comentario['comentario'] ?? '',
                   style: const TextStyle(
@@ -513,6 +513,7 @@ class _ComentariosScreenState extends State<ComentariosScreen> {
                     fontSize: 14,
                     height: 1.4,
                   ),
+                  softWrap: true,
                 ),
                 const SizedBox(height: 8),
                 //botones accion
