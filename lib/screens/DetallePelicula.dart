@@ -44,7 +44,8 @@ class DetallePelicula extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: pelicula['poster_url'] != null && pelicula['poster_url'].isNotEmpty
+                  image: pelicula['poster_url'] != null &&
+                          pelicula['poster_url'].isNotEmpty
                       ? NetworkImage(pelicula['poster_url']) as ImageProvider
                       : const AssetImage('assets/images/placeholder.jpg'),
                   fit: BoxFit.cover,
@@ -76,37 +77,44 @@ class DetallePelicula extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Text(
-                              '${pelicula['rating']?.toStringAsFixed(1) ?? '0.0'}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                '${pelicula['rating']?.toStringAsFixed(1) ?? '0.0'}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Text(
-                            pelicula['release_date']?.toString().split('-').first ?? '',
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
+                            const SizedBox(width: 10),
+                            Text(
+                              pelicula['release_date']
+                                      ?.toString()
+                                      .split('-')
+                                      .first ??
+                                  '',
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          if (pelicula['genres'] != null)
-                            ...pelicula['genres'].map<Widget>((genre) => Padding(
+                            const SizedBox(width: 10),
+                            if (pelicula['genres'] != null)
+                              ...pelicula['genres'].map<Widget>(
+                                (genre) => Padding(
                                   padding: const EdgeInsets.only(right: 4),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
@@ -114,7 +122,9 @@ class DetallePelicula extends StatelessWidget {
                                       vertical: 4,
                                     ),
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                      ),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Text(
@@ -125,8 +135,10 @@ class DetallePelicula extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                )),
-                        ],
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -172,9 +184,11 @@ class DetallePelicula extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     if (pelicula['historia']['origen'] != null)
-                      construirInfoRow('Origen', pelicula['historia']['origen']),
+                      construirInfoRow(
+                          'Origen', pelicula['historia']['origen']),
                     if (pelicula['historia']['director'] != null)
-                      construirInfoRow('Director', pelicula['historia']['director']),
+                      construirInfoRow(
+                          'Director', pelicula['historia']['director']),
                     if (pelicula['historia']['personajes'] != null)
                       construirInfoRow(
                         'Personajes',
@@ -188,7 +202,8 @@ class DetallePelicula extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            mostrarMensaje(context, 'Reproduciendo: ${pelicula['name']}');
+                            mostrarMensaje(
+                                context, 'Reproduciendo: ${pelicula['name']}');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
@@ -197,7 +212,8 @@ class DetallePelicula extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          icon: const Icon(Icons.play_arrow, color: Colors.white),
+                          icon:
+                              const Icon(Icons.play_arrow, color: Colors.white),
                           label: const Text(
                             'Reproducir',
                             style: TextStyle(
@@ -247,12 +263,14 @@ class DetallePelicula extends StatelessWidget {
                       onPressed: () {
                         String url = pelicula['trailer_url'] ?? '';
                         if (url.isNotEmpty) {
-                          mostrarMensaje(context, 'Abriendo en YouTube: ${pelicula['name']}');
+                          mostrarMensaje(context,
+                              'Abriendo en YouTube: ${pelicula['name']}');
                         } else {
                           mostrarMensaje(context, 'No hay trailer disponible');
                         }
                       },
-                      icon: const Icon(Icons.youtube_searched_for, color: Colors.red),
+                      icon: const Icon(Icons.youtube_searched_for,
+                          color: Colors.red),
                       label: const Text(
                         'Ver trailer en YouTube',
                         style: TextStyle(
