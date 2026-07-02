@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ComentariosScreen.dart';
+import 'ReproductorScreen.dart';
 
 class DetallePelicula extends StatelessWidget {
   final dynamic pelicula;
@@ -202,8 +203,15 @@ class DetallePelicula extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            mostrarMensaje(
-                                context, 'Reproduciendo: ${pelicula['name']}');
+                            // Navegar al reproductor de video
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ReproductorScreen(
+                                  pelicula: pelicula,
+                                ),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
